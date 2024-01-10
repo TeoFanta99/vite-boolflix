@@ -15,7 +15,7 @@ export default {
     <header>
         <div class="logo-container"></div>
         <div class="search-container">
-            <input type="text" placeholder="Cerca" class="me-2">
+            <input v-model="store.filmParam" @keyup.enter="$emit('confirm')" type="text" placeholder="Cerca" class="me-2">
         </div>
     </header>
 </template>
