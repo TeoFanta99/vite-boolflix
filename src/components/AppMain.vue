@@ -21,14 +21,12 @@ export default {
             <AppCard />
             <AppCard />
             <AppCard />
-
         </div>
     </div>
 </template>
 
 <style lang="scss">
 .row {
-    width: 90%;
     margin: 30px auto;
     gap: 5px
 }
