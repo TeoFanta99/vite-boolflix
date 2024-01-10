@@ -1,11 +1,20 @@
 <script>
 import { store } from '../store'
+import AppSearch from './AppSearch.vue'
 
 export default {
     name: "AppHeader",
     data() {
         return {
             store
+        }
+    },
+    components: {
+        AppSearch
+    },
+    methods: {
+        saluta() {
+            console.log("evento ricevuto");
         }
     }
 }
@@ -14,9 +23,7 @@ export default {
 <template>
     <header>
         <div class="logo-container"></div>
-        <div class="search-container">
-            <input v-model="store.filmParam" @keyup.enter="$emit('confirm')" type="text" placeholder="Cerca" class="me-2">
-        </div>
+        <AppSearch @confirm="saluta" />
     </header>
 </template>
 
