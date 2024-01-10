@@ -24,6 +24,9 @@ export default {
       let myURL = store.apiURL;
       console.log("i'm in");
     }
+  },
+  created() {
+    this.getFilm()
   }
 }
 </script>
