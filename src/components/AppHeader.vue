@@ -4,6 +4,14 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+    <header></header>
+</template>
 
-<style lang="scss"></style>
+<style lang="scss">
+header {
+    min-height: 100px;
+    width: 100%;
+    background-color: lightblue;
+}
+</style>
