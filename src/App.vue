@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @confirm="this.getFilm" />
   <AppMain />
 </template>
 
