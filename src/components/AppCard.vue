@@ -12,8 +12,8 @@ export default {
 
 <style lang="scss">
 .card {
-    min-height: 100px;
-    width: calc((100% / 5) - 5px);
+    min-height: 400px;
+    width: calc((100% / 3) - 5px);
     background-color: orange;
 
     img {
