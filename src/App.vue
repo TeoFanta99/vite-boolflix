@@ -22,7 +22,29 @@ export default {
   methods: {
     getFilm() {
       let myURL = store.apiURL;
-      console.log("i'm in");
+      console.log("console log per vedere se il metodo funziona");
+
+      // chiamati API per i film
+      axios
+        .get(myURL)
+        .then((res => {
+          console.log(res.data);
+          store.filmList = res.data
+        }))
+        .catch((err) => {
+          console.log("errori", err);
+        })
+
+      // filtrare film per nome
+      if (store.filmParam !== "") {
+
+        // verifico se la richiesta API (il link) contiene già dei parametri
+        if (myURL.includes('?')) {
+          myURL += `&query=${store.filmParam}`
+        } else {
+          myURL += `?query=${store.filmParam}`
+        }
+      }
     }
   },
   created() {
