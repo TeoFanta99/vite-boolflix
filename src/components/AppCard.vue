@@ -1,6 +1,9 @@
 <script>
 export default {
-    name: "AppCard"
+    name: "AppCard",
+    props: {
+        info: Object
+    }
 }
 </script>
 
