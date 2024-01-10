@@ -19,7 +19,7 @@ export default {
     <div class="container">
         <div class="row">
             <!-- elemento da iterare -->
-            <AppCard />
+            <AppCard v-for="(film, i) in filmList" :key="i" :info="film" />
         </div>
     </div>
 </template>
