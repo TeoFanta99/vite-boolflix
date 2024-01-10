@@ -18,8 +18,7 @@ export default {
 <template>
     <div class="container">
         <div class="row">
-            <AppCard />
-            <AppCard />
+            <!-- elemento da iterare -->
             <AppCard />
         </div>
     </div>

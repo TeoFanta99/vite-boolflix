@@ -8,6 +8,7 @@ export default {
 </script>
 
 <template>
+    <!-- elemento da rendere dinamico -->
     <div class="film-card">
         CARD
     </div>
