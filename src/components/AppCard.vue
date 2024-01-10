@@ -5,13 +5,13 @@ export default {
 </script>
 
 <template>
-    <div class="card">
+    <div class="film-card">
         CARD
     </div>
 </template>
 
 <style lang="scss">
-.card {
+.row>.film-card {
     min-height: 400px;
     width: calc((100% / 3) - 5px);
     background-color: orange;
