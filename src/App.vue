@@ -24,6 +24,18 @@ export default {
       let myURL = store.apiURL;
       console.log("console log per vedere se il metodo funziona");
 
+      // se utente ha fatto una ricerca
+      if (store.filmParam !== "") {
+
+        myURL += `&query=${encodeURIComponent(store.filmParam)}`;
+        // verifico se la richiesta API (il link) contiene già dei parametri
+        if (myURL.includes('?')) {
+          myURL += `&query=${store.filmParam}`
+        } else {
+          myURL += `?query=${store.filmParam}`
+        }
+      }
+
       // chiamati API per i film
       axios
         .get(myURL)
@@ -34,18 +46,7 @@ export default {
         .catch((err) => {
           console.log("errori", err);
         })
-
-      // filtrare film per nome
-      if (store.filmParam !== "") {
-
-        // verifico se la richiesta API (il link) contiene già dei parametri
-        if (myURL.includes('?')) {
-          myURL += `&query=${store.filmParam}`
-        } else {
-          myURL += `?query=${store.filmParam}`
-        }
-      }
-    }
+    },
   },
   created() {
     this.getFilm()
@@ -54,7 +55,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @confirm="this.getFilm" />
+  <AppHeader />
   <AppMain />
 </template>
 
