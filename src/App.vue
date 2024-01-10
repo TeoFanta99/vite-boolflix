@@ -18,6 +18,12 @@ export default {
     return {
       store
     }
+  },
+  methods: {
+    getFilm() {
+      let myURL = store.apiURL;
+      console.log("i'm in");
+    }
   }
 }
 </script>
