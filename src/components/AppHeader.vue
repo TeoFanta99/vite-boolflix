@@ -14,12 +14,8 @@ export default {
         AppSearch
     },
     methods: {
-        searchFilm() {
-            // quello che scrive l'utente nell'input ora deve apparire in console
-            // console.log(store.filmParam);
-
+        search() {
             let myURL = store.apiURL;
-            console.log(myURL);
 
             // quello che scrive l'utente nell'input va aggiunto al link API. Inizio col verificare se l'utente ha fatto una ricerca
             if (store.filmParam !== "") {
@@ -28,11 +24,10 @@ export default {
                 if (myURL.includes('?')) {
                     myURL += `&query=${store.filmParam}`
                 }
-                // Se non contiene di parametri aggiungo '?'
+                // Se non contiene dei parametri aggiungo '?'
                 else {
                     myURL += `?query=${store.filmParam}`
                 }
-                console.log(myURL);
             }
 
             // ora faccio partire la chiamata axios per cercare i film con i parametri aggiunti dall'utente
@@ -40,7 +35,29 @@ export default {
                 .get(myURL)
                 .then((res => {
                     store.filmList = res.data.results
-                    console.log(store.filmList);
+                }))
+                .catch((err) => {
+                    console.log("errori", err);
+                })
+
+
+
+            // ora dobbiamo rifare la stessa cosa, ma stavolta per le serie tv
+            let mySeriesURL = store.tvSeriesApiURL;
+
+            if (store.filmParam !== "") {
+                if (mySeriesURL.includes('?')) {
+                    mySeriesURL += `&query=${store.filmParam}`
+                } else {
+                    mySeriesURL += `?query=${store.filmParam}`
+                }
+            }
+
+            axios
+                .get(mySeriesURL)
+                .then((res => {
+                    store.tvSeriesList = res.data.results
+                    console.log(store.tvSeriesList);
                 }))
                 .catch((err) => {
                     console.log("errori", err);
@@ -53,7 +70,7 @@ export default {
 <template>
     <header>
         <div class="logo-container"></div>
-        <AppSearch @ricerca="searchFilm" />
+        <AppSearch @ricerca="search" />
     </header>
 </template>
 
