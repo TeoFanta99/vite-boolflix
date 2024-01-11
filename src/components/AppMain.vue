@@ -7,7 +7,7 @@ export default {
         return {
             store
         }
-    }
+    },
 }
 </script>
 
@@ -15,11 +15,11 @@ export default {
     <div class="container">
         <div class="row">
             <!-- elemento da iterare -->
-            <div v-for="(film, i) in filmList" :key="i" :info="film" class="film-card">
-                <h2>{{ res.data.results[i].title }}</h2>
-                <span>{{ res.data.results[i].original_title }}</span>
-                <span>{{ res.data.results[i].original_language }}</span>
-                <span>{{ res.data.results[i].vote_average }}</span>
+            <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
+                <h2>{{ film.title }}</h2>
+                <span>{{ film.original_title }}</span>
+                <span>{{ film.original_language }}</span>
+                <span>{{ film.vote_average }}</span>
             </div>
         </div>
     </div>
@@ -35,6 +35,8 @@ export default {
     min-height: 400px;
     width: calc((100% / 3) - 5px);
     background-color: orange;
+    display: flex;
+    flex-direction: column;
 
     img {
         width: 100%;
