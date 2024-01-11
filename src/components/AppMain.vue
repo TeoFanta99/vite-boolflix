@@ -21,6 +21,9 @@ export default {
                 return new URL(`../assets/img/world-flag.svg.png`, import.meta.url).href;
             }
 
+        },
+        getBackgroundImg: function (img) {
+            return new URL(`https://image.tmdb.org/t/p/w342/${img}`)
         }
     }
 }
@@ -35,9 +38,10 @@ export default {
                 <h2>{{ film.title }}</h2>
                 <span>{{ film.original_title }}</span>
                 <span>Lingua originale:
-                    <img :src="getFlagImageUrl(film.original_language)" alt="bandiera">
+                    <img :src="getFlagImageUrl(film.original_language)" alt="bandiera" class="flag-language">
                 </span>
                 <span>{{ film.vote_average }}</span>
+                <img :src=getBackgroundImg(film.poster_path) alt="background">
             </div>
         </div>
         <div class="row">
@@ -47,9 +51,10 @@ export default {
                 <h2>{{ tvserie.name }}</h2>
                 <span>{{ tvserie.original_name }}</span>
                 <span>Lingua originale:
-                    <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera">
+                    <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera" class="flag-language">
                 </span>
                 <span>{{ tvserie.vote_average }}</span>
+                <img :src=getBackgroundImg(tvserie.poster_path) alt="background">
             </div>
         </div>
     </div>
@@ -68,7 +73,7 @@ export default {
     display: flex;
     flex-direction: column;
 
-    img {
+    .flag-language {
         width: auto;
         max-height: 20px;
     }
