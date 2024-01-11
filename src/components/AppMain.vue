@@ -41,48 +41,62 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row">
-            <h1>FILM</h1>
-            <!-- elemento da iterare (film)-->
-            <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
-                <span><b>Titolo</b>: {{ film.title }}</span>
-                <span><b>Titolo originale</b>: {{ film.original_title }}</span>
-                <span><b>Lingua originale</b>:
-                    <img :src="getFlagImageUrl(film.original_language)" alt="bandiera" class="flag-language">
-                </span>
-                <span class="stars"><b>Valutazione:</b> {{ getStars(film.vote_average) }}</span>
-                <img :src=getBackgroundImg(film.poster_path) alt="immagine di copertina non trovata">
+    <main>
+        <div class="container">
+            <div class="row">
+                <h1>FILM</h1>
+                <!-- elemento da iterare (film)-->
+                <!-- front -->
+                <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
+                    <img class="front-card" :src=getBackgroundImg(film.poster_path) alt="immagine di copertina non trovata">
+                    <div class="back-card">
+                        <span><b>Titolo</b>: {{ film.title }}</span>
+                        <span><b>Titolo originale</b>: {{ film.original_title }}</span>
+                        <span><b>Lingua originale</b>:
+                            <img :src="getFlagImageUrl(film.original_language)" alt="bandiera" class="flag-language">
+                        </span>
+                        <span class="stars"><b>Valutazione:</b> {{ getStars(film.vote_average) }}</span>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <h1>SERIE TV</h1>
+                <!-- elemento da iterare (serie tv) -->
+                <div v-for="(tvserie, i) in store.tvSeriesList" :key="i" :info="film" class="film-card">
+                    <span><b>Titolo</b>: {{ tvserie.name }}</span>
+                    <span><b>Titolo originale</b>: {{ tvserie.original_name }}</span>
+                    <span><b>Lingua originale</b>:
+                        <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera" class="flag-language">
+                    </span>
+                    <span class="stars"><b>Valutazione:</b> {{ getStars(tvserie.vote_average) }}</span>
+                    <img :src=getBackgroundImg(tvserie.poster_path) alt="immagine di copertina non trovata">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <h1>SERIE TV</h1>
-            <!-- elemento da iterare (serie tv) -->
-            <div v-for="(tvserie, i) in store.tvSeriesList" :key="i" :info="film" class="film-card">
-                <span><b>Titolo</b>: {{ tvserie.name }}</span>
-                <span><b>Titolo originale</b>: {{ tvserie.original_name }}</span>
-                <span><b>Lingua originale</b>:
-                    <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera" class="flag-language">
-                </span>
-                <span class="stars"><b>Valutazione:</b> {{ getStars(tvserie.vote_average) }}</span>
-                <img :src=getBackgroundImg(tvserie.poster_path) alt="immagine di copertina non trovata">
-            </div>
-        </div>
-    </div>
+    </main>
 </template>
 
 <style lang="scss">
+main {
+    background-color: grey;
+}
+
 .row {
     margin: 30px auto;
-    gap: 5px
+    gap: 10px
 }
 
 .row>.film-card {
     min-height: 400px;
-    width: calc((100% / 3) - 5px);
-    background-color: orange;
+    width: calc((100% / 3) - 10px);
+    background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
+    color: white;
+    position: relative;
+    overflow: hidden;
 
     .flag-language {
         width: auto;
@@ -90,11 +104,40 @@ export default {
     }
 }
 
+.front-card,
+.back-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+    transition: transform 0.5s ease;
+}
+
+.front-card {
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.film-card:hover .front-card {
+    transform: translateY(-100%);
+}
+
+.film-card:hover .back-card {
+    transform: translateY(0);
+}
+
 .stars {
     color: yellow;
 
     b {
-        color: black;
+        color: white;
     }
 }
 </style>
