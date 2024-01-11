@@ -16,7 +16,7 @@ export default {
     methods: {
         searchFilm() {
             // quello che scrive l'utente nell'input ora deve apparire in console
-            console.log(store.filmParam);
+            // console.log(store.filmParam);
 
             let myURL = store.apiURL;
             console.log(myURL);
@@ -39,7 +39,8 @@ export default {
             axios
                 .get(myURL)
                 .then((res => {
-                    console.log(res.data);
+                    store.filmList = res.data.results
+                    console.log(store.filmList);
                 }))
                 .catch((err) => {
                     console.log("errori", err);
