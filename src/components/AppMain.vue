@@ -29,7 +29,8 @@ export default {
 <template>
     <div class="container">
         <div class="row">
-            <!-- elemento da iterare -->
+            <h1>FILM</h1>
+            <!-- elemento da iterare (film)-->
             <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
                 <h2>{{ film.title }}</h2>
                 <span>{{ film.original_title }}</span>
@@ -37,6 +38,18 @@ export default {
                     <img :src="getFlagImageUrl(film.original_language)" alt="bandiera">
                 </span>
                 <span>{{ film.vote_average }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <h1>SERIE TV</h1>
+            <!-- elemento da iterare (serie tv) -->
+            <div v-for="(tvserie, i) in store.tvSeriesList" :key="i" :info="film" class="film-card">
+                <h2>{{ tvserie.name }}</h2>
+                <span>{{ tvserie.original_name }}</span>
+                <span>Lingua originale:
+                    <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera">
+                </span>
+                <span>{{ tvserie.vote_average }}</span>
             </div>
         </div>
     </div>
