@@ -8,19 +8,13 @@ export default {
             store
         }
     },
-    methods: {
-        saluta() {
-            this.$emit('confirm');
-            console.log("emesso??");
-        }
-    }
 }
 </script>
 
 <template>
     <div class="search-container">
         <input v-model.trim="store.filmParam" type="text" placeholder="Cerca" class="me-2">
-        <button type="button" class="me-2" @click.prevent="saluta">SEARCH</button>
+        <button type="button" class="me-2" @click.prevent="$emit('ricerca')">SEARCH</button>
     </div>
 </template>
 
