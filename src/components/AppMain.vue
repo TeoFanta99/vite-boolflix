@@ -33,7 +33,9 @@ export default {
             <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
                 <h2>{{ film.title }}</h2>
                 <span>{{ film.original_title }}</span>
-                <img :src="getFlagImageUrl(film.original_language)" alt="bandiera">
+                <span>Lingua originale:
+                    <img :src="getFlagImageUrl(film.original_language)" alt="bandiera">
+                </span>
                 <span>{{ film.vote_average }}</span>
             </div>
         </div>
@@ -54,7 +56,8 @@ export default {
     flex-direction: column;
 
     img {
-        width: 100%;
+        width: auto;
+        max-height: 30px;
     }
 }
 </style>
