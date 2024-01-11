@@ -69,7 +69,9 @@ export default {
 
 <template>
     <header>
-        <div class="logo-container"></div>
+        <div class="logo-container ms-4">
+            BOOLFLIX
+        </div>
         <AppSearch @ricerca="search" />
     </header>
 </template>
@@ -82,5 +84,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: black;
+
+    .logo-container {
+        color: red;
+        font-size: 30px;
+    }
 }
 </style>
