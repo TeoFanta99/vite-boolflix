@@ -8,6 +8,21 @@ export default {
             store
         }
     },
+    methods: {
+        // metodo che serve a convertire le lingue dal testo alla bandiera corrispondente
+
+        getFlagImageUrl: function (img) {
+
+            const supportedLanguages = ['it', 'en', 'us', 'fr', 'es', 'de', 'ru', 'pl', 'pt'];
+
+            if (supportedLanguages.includes(img)) {
+                return new URL(`../assets/img/${img}.svg.png`, import.meta.url).href;
+            } else {
+                return new URL(`../assets/img/world-flag.svg.png`, import.meta.url).href;
+            }
+
+        }
+    }
 }
 </script>
 
@@ -18,7 +33,7 @@ export default {
             <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
                 <h2>{{ film.title }}</h2>
                 <span>{{ film.original_title }}</span>
-                <span>{{ film.original_language }}</span>
+                <img :src="getFlagImageUrl(film.original_language)" alt="bandiera">
                 <span>{{ film.vote_average }}</span>
             </div>
         </div>
