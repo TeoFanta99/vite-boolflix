@@ -24,6 +24,10 @@ export default {
         },
         getBackgroundImg: function (img) {
             return new URL(`https://image.tmdb.org/t/p/w342/${img}`)
+        },
+        dividiPerDue(numero) {
+            const risultato = numero / 2
+            return Math.ceil(risultato);
         }
     }
 }
@@ -40,7 +44,10 @@ export default {
                 <span>Lingua originale:
                     <img :src="getFlagImageUrl(film.original_language)" alt="bandiera" class="flag-language">
                 </span>
-                <span>{{ film.vote_average }}</span>
+                <span>
+                    {{ dividiPerDue(film.vote_average) }}
+                    <i class="fa-solid fa-star"></i>
+                </span>
                 <img :src=getBackgroundImg(film.poster_path) alt="background">
             </div>
         </div>
@@ -53,7 +60,7 @@ export default {
                 <span>Lingua originale:
                     <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera" class="flag-language">
                 </span>
-                <span>{{ tvserie.vote_average }}</span>
+                <span>{{ dividiPerDue(tvserie.vote_average) }}</span>
                 <img :src=getBackgroundImg(tvserie.poster_path) alt="background">
             </div>
         </div>
