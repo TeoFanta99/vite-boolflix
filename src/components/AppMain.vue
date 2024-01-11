@@ -104,7 +104,7 @@ main {
 }
 
 .row>.film-card {
-    min-height: 400px;
+    min-height: 600px;
     width: calc((100% / 3) - 10px);
     background-color: rgb(0, 0, 0);
     display: flex;
@@ -166,6 +166,27 @@ main {
 
     b {
         color: white;
+    }
+}
+
+@media all and (max-width: 1399px) {
+
+    .row>.film-card {
+        min-height: 500px;
+    }
+}
+
+@media all and (max-width: 991px) {
+
+    .row>.film-card {
+        min-height: 400px;
+    }
+}
+
+@media all and (max-width: 767px) {
+
+    .row>.film-card {
+        min-height: 300px;
     }
 }
 </style>
