@@ -1,8 +1,15 @@
 <script>
+import { store } from '../store'
+
 export default {
     name: "AppCard",
     props: {
         info: Object
+    },
+    data() {
+        return {
+            store
+        }
     }
 }
 </script>
