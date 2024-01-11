@@ -10,7 +10,6 @@ export default {
     },
     methods: {
         // metodo che serve a convertire le lingue dal testo alla bandiera corrispondente
-
         getFlagImageUrl: function (img) {
 
             const supportedLanguages = ['it', 'en', 'us', 'fr', 'es', 'de', 'ru', 'pl', 'pt'];
@@ -20,14 +19,22 @@ export default {
             } else {
                 return new URL(`../assets/img/world-flag.svg.png`, import.meta.url).href;
             }
-
         },
+
+        // metodo che restituisce l'immagine di copertina
         getBackgroundImg: function (img) {
             return new URL(`https://image.tmdb.org/t/p/w342/${img}`)
         },
-        dividiPerDue(numero) {
-            const risultato = numero / 2
-            return Math.ceil(risultato);
+
+        // metodo per sostituire il voto del film con il numero di stelle piene corrispondenti, arrotondando per eccesso i numeri decimali
+        getStars: function (num) {
+            const numStellePiene = Math.ceil(num / 2);
+            const numStelleVuote = 5 - numStellePiene;
+
+            const stellePiene = '★'.repeat(numStellePiene);
+            const stelleVuote = '☆'.repeat(numStelleVuote);
+
+            return stellePiene + stelleVuote
         }
     }
 }
@@ -39,29 +46,26 @@ export default {
             <h1>FILM</h1>
             <!-- elemento da iterare (film)-->
             <div v-for="(film, i) in store.filmList" :key="i" :info="film" class="film-card">
-                <h2>{{ film.title }}</h2>
-                <span>{{ film.original_title }}</span>
-                <span>Lingua originale:
+                <span><b>Titolo</b>: {{ film.title }}</span>
+                <span><b>Titolo originale</b>: {{ film.original_title }}</span>
+                <span><b>Lingua originale</b>:
                     <img :src="getFlagImageUrl(film.original_language)" alt="bandiera" class="flag-language">
                 </span>
-                <span>
-                    {{ dividiPerDue(film.vote_average) }}
-                    <i class="fa-solid fa-star"></i>
-                </span>
-                <img :src=getBackgroundImg(film.poster_path) alt="background">
+                <span class="stars"><b>Valutazione:</b> {{ getStars(film.vote_average) }}</span>
+                <img :src=getBackgroundImg(film.poster_path) alt="immagine di copertina non trovata">
             </div>
         </div>
         <div class="row">
             <h1>SERIE TV</h1>
             <!-- elemento da iterare (serie tv) -->
             <div v-for="(tvserie, i) in store.tvSeriesList" :key="i" :info="film" class="film-card">
-                <h2>{{ tvserie.name }}</h2>
-                <span>{{ tvserie.original_name }}</span>
-                <span>Lingua originale:
+                <span><b>Titolo</b>: {{ tvserie.name }}</span>
+                <span><b>Titolo originale</b>: {{ tvserie.original_name }}</span>
+                <span><b>Lingua originale</b>:
                     <img :src="getFlagImageUrl(tvserie.original_language)" alt="bandiera" class="flag-language">
                 </span>
-                <span>{{ dividiPerDue(tvserie.vote_average) }}</span>
-                <img :src=getBackgroundImg(tvserie.poster_path) alt="background">
+                <span class="stars"><b>Valutazione:</b> {{ getStars(tvserie.vote_average) }}</span>
+                <img :src=getBackgroundImg(tvserie.poster_path) alt="immagine di copertina non trovata">
             </div>
         </div>
     </div>
@@ -83,6 +87,14 @@ export default {
     .flag-language {
         width: auto;
         max-height: 20px;
+    }
+}
+
+.stars {
+    color: yellow;
+
+    b {
+        color: black;
     }
 }
 </style>
