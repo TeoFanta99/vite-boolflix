@@ -1,5 +1,6 @@
 <script>
 import { store } from '../store'
+import error404Image from '../assets/img/error-404.jpg'
 
 export default {
     name: "AppMain",
@@ -23,8 +24,11 @@ export default {
 
         // metodo che restituisce l'immagine di copertina
         getBackgroundImg: function (img) {
-            if (img)
-                return new URL(`https://image.tmdb.org/t/p/w342/${img}`)
+            if (img) {
+                return new URL(`https://image.tmdb.org/t/p/w342/${img}`);
+            } else {
+                return error404Image;
+            }
         },
 
         // metodo per sostituire il voto del film con il numero di stelle piene corrispondenti, arrotondando per eccesso i numeri decimali
